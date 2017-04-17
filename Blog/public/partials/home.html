@@ -6,9 +6,7 @@
             {{blog.title}}
             {{blog.rating}}
         </a>
-        <a href="/#/blog/delete/{{blog._id}}">
-            <i class="glyphicon glyphicon-remove"></i>
-        </a>
+			<input type="button" value="Delete" class="btn btn-danger" ng-click="delete(blog._id)" />
     </li>
 </ul>
 
