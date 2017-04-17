@@ -26,7 +26,7 @@ app.controller('HomeCtrl', ['$scope', '$resource', '$location',
 			$scope.blogs = blogs;
 		});
 		$scope.save = function(){
-			var Blogs = $resource('/api/movies');
+			var Blogs = $resource('/api/blogs');
             Blogs.save($scope.blog, function(){
                 $location.path('/');
             });
