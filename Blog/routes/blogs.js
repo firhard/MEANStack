@@ -55,7 +55,7 @@ router.post('/:id', function(req,res){
 		res.json(blog)
 	});
 });
-db.blogs.update({ _id: ObjectId("58f28169c6fc2553477e6824") }, { $addToSet: {posts: { $each: [{ postid: 4, date: "April 14, 2017", heading: "Babi", body: "babiii"}]}}})
+//db.blogs.update({ _id: ObjectId("58f28169c6fc2553477e6824") }, { $addToSet: {posts: { $each: [{ postid: 4, date: "April 14, 2017", heading: "Babi", body: "babiii"}]}}})
 //delete blog from the database
 router.delete('/:id', function(req,res){
 	var collection = db.get('blogs');
