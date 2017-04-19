@@ -10,11 +10,12 @@
 		<li>Title: {{blog.title}}</li>
 		<li>Author: {{blog.author}}</li>
 		<li>Rating: {{blog.rating}}</li>
-	<li ng-repeat='blog in blogs'>
-            PostId: {{blog.postid}} <p>
-            Heading: {{blog.heading}} <p>
-            Body: {{blog.body}} <p>
-            Rating: {{blog.rating}} <p>
+	<li ng-repeat='blog in blog'>
+            PostId: {{blog.post.postid}} <p>
+            Heading: {{blog.post.heading}} <p>
+            Body: {{blog.post.body}} <p>
+            Date: {{blog.post.date}} <p>
+            Rating: {{blog.post.rating}} <p>
             <input type="button" value="Delete" class="btn btn-danger" ng-click="delete(blog.postid)"></input>
     </li>
 </ul>

@@ -40,17 +40,17 @@ app.controller('ViewBlogCtrl', ['$scope', '$resource', '$location', '$routeParam
         var Blogs = $resource('/api/blogs/:id');
         Blogs.get({ id: $routeParams.id}, function(blog){
             $scope.blog = blog;
-        });
+        })
         $scope.save = function(){
             var Blogs = $resource('/api/blogs/:id');
             Blogs.save($scope.blog, function(){
                 $location.path('/');
             });
         };
-        $scope.delete = function(blog_id){
-            var Blogs = $resource('/api/blogs/' + blog_id + '/' + post_id);
-            Blogs.delete({ id: blog_id, postid: post_id }, function(blog){
-                $location.path('/');
-            });
-        }
+        // $scope.delete = function(blog_id, post_id){
+        //     var Blogs = $resource('/api/blogs/' + blog_id + '/' + post_id);
+        //     Blogs.delete({ id: blog_id, postid: post_id }, function(blog){
+        //         $location.path('/');
+        //     });
+        // }
 }]);

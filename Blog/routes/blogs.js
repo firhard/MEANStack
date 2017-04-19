@@ -22,14 +22,14 @@ router.post('/', function(req,res){
 		rating: 0
 	}, function(err,blogs){
 		if (err) throw err;
-		res.json(blog)
+		res.json(blogs)
 	});
 });
 
 //returns the blog corresponding to the id
 router.get('/:id', function(req,res){
 	var collection = db.get('blogs');
-	collection.findOne({ _id: req.params.id}, function(err,blogs){
+	collection.findOne({ _id: req.params.id }, function(err,blog){
 		if (err) throw err;
 		res.json(blog)
 	});
@@ -38,7 +38,7 @@ router.get('/:id', function(req,res){
 //add new blog-post to one of the blog
 router.post('/:id', function(req,res){
 	var collection = db.get('blogs');
-	collection.update({ _id : req.params.id}, 
+	collection.update({ _id : req.params.id }, 
 	{
 		// rating: req.body.rating,
 		$addToSet:{
@@ -53,7 +53,7 @@ router.post('/:id', function(req,res){
 		}
 	}, function(err,blogs){
 		if (err) throw err;
-		res.json(blog)
+		res.json(blogs)
 	});
 });
 
@@ -62,7 +62,7 @@ router.delete('/:id', function(req,res){
 	var collection = db.get('blogs');
 	collection.remove({
 		_id: req.params.id
-	}, function(err,blogs){
+	}, function(err,blog){
 		if (err) throw err;
 		res.json(blog);
 	});
@@ -74,7 +74,7 @@ router.delete('/:id/:postid', function(req,res){
 	collection.update({
 		_id: req.params.id
 	}, {$pull: {posts: {postid: req.params.postid}}
-	}, function(err,blogs){
+	}, function(err,blog){
 		if (err) throw err;
 		res.json(blog);
 	});
@@ -86,7 +86,7 @@ router.put('/:id', function(req,res){
 	var collection = db.get('blogs');
 	collection.update({ _id: req.params.id
 	}, {rating: req.params.rating
-	}, function(err,blogs){
+	}, function(err,blog){
 		if (err) throw err;
 		res.json(blog);
 	});	//needs to calculate the average
