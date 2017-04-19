@@ -73,7 +73,7 @@ router.delete('/:id/:postid', function(req,res){
 	var collection = db.get('blogs');
 	collection.update({
 		_id: req.params.id
-	}, {$pull: {posts: {postid: req.params.postid}}
+	}, {$pull: {"post": {"postid": req.params.postid}}
 	}, function(err,blog){
 		if (err) throw err;
 		res.json(blog);
