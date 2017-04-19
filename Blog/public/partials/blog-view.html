@@ -1,0 +1,44 @@
+<h1>Blog Details</h1>
+
+<a class="btn btn-default" href="/#/">Home Page</a><p>
+<p>
+	View of the blog
+</p>
+
+
+<ul>
+		<li>Title: {{blog.title}}</li>
+		<li>Author: {{blog.author}}</li>
+		<li>Rating: {{blog.rating}}</li>
+	<li ng-repeat='blog in blogs'>
+            PostId: {{blog.postid}} <p>
+            Heading: {{blog.heading}} <p>
+            Body: {{blog.body}} <p>
+            Rating: {{blog.rating}} <p>
+            <input type="button" value="Delete" class="btn btn-danger" ng-click="delete(blog.postid)"></input>
+    </li>
+</ul>
+
+<form>
+    <div class="form-group">
+        <label>Post ID</label>		
+        <input class="form-control" ng-model="blog.postid"></input>
+    </div>
+    <div class="form-group">
+        <label>Heading</label>
+        <input class="form-control" ng-model="blog.heading"></input>
+    </div>
+    <div class="form-group">
+        <label>Body</label>		
+        <textarea class="form-control" ng-model="blog.body"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Date</label>		
+        <input type="date" class="form-control" ng-model="blog.date">
+    </div>
+    <div class="form-group">
+        <label>Rating</label>		
+        <input class="form-control" ng-model="blog.rating"></input>
+    </div>
+    <input type="button" class="btn btn-primary" value="Add" ng-click="save()"></input>	
+</form>

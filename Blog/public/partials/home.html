@@ -2,11 +2,13 @@
 
 <ul>
     <li ng-repeat='blog in blogs'>
-        <a href="/#/blog/{{blog._id}}">
-            {{blog.title}}
-            {{blog.rating}}
+        <a href="/#/blog/viewblog/{{blog._id}}">
+            Title: {{blog.title}} <p>
+            Author: {{blog.author}} <p>
+            Rating: {{blog.rating}} <p>
+            ID: {{blog._id}} <p>
         </a>
-			<input type="button" value="Delete" class="btn btn-danger" ng-click="delete(blog._id)" />
+        <input type="button" value="Delete" class="btn btn-danger" ng-click="delete(blog._id)">
     </li>
 </ul>
 
@@ -19,6 +21,6 @@
         <label>Author</label>
         <textarea class="form-control" ng-model="blog.author"></textarea>
     </div>
-    <input type="button" class="btn btn-primary" value="Add" ng-click="save()"></input>	
+    <input type="button" class="btn btn-primary" value="Add" ng-click="save()" href="/#/"></input>	
 </form>
 

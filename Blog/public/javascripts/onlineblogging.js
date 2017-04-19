@@ -6,6 +6,10 @@ app.config(['$routeProvider', function($routeProvider){
             templateUrl: 'partials/home.html',
             controller: 'HomeCtrl'
         })
+        .when('/blog/viewblog/:id', {
+            templateUrl: 'partials/blog-view.html',
+            controller: 'ViewBlogCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
@@ -25,8 +29,27 @@ app.controller('HomeCtrl', ['$scope', '$resource', '$location',
         };
         $scope.delete = function(blog_id){
        		var Blogs = $resource('/api/blogs/' + blog_id);
-
             Blogs.delete({ id: blog_id }, function(blog){
+                $location.path('/');
+            });
+        }
+}]);
+
+app.controller('ViewBlogCtrl', ['$scope', '$resource', '$location', '$routeParams',
+    function($scope, $resource, $location, $routeParams){
+        var Blogs = $resource('/api/blogs/:id');
+        Blogs.get({ id: $routeParams.id}, function(blog){
+            $scope.blog = blog;
+        });
+        $scope.save = function(){
+            var Blogs = $resource('/api/blogs/:id');
+            Blogs.save($scope.blog, function(){
+                $location.path('/');
+            });
+        };
+        $scope.delete = function(blog_id){
+            var Blogs = $resource('/api/blogs/' + blog_id + '/' + post_id);
+            Blogs.delete({ id: blog_id, postid: post_id }, function(blog){
                 $location.path('/');
             });
         }
