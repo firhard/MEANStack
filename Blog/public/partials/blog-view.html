@@ -1,15 +1,19 @@
-<h1>Blog Details</h1>
+<a class="btn btn-default" href="/#/">Home Page</a><p><h1>Blog Details</h1>
 
-<a class="btn btn-default" href="/#/">Home Page</a><p><p><p>
+<p><p>
 
 
 		'{{blog.title}}' by
 		{{blog.author}}
+		<p>
+		Rating: {{blog.rating}}
 <ul>
 	<li ng-repeat='blog in blog.post'>
+			PostID: {{blog.postid}} <p>
             Heading: {{blog.heading}} <p>
             Body: {{blog.body}} <p>
             Date: {{blog.date}} <p>
+
             <input type="button" value="Delete" class="btn btn-danger" ng-click="delete(blog.postid)"></input>
     </li>
 </ul>
@@ -31,5 +35,5 @@
         <label>Date</label>		
         <input type="date" class="form-control" ng-model="blog.post.date">
     </div>
-    <input type="button" class="btn btn-primary" value="Add" ng-click="save()"></input>	
+    <input type="button" class="btn btn-primary" value="Add" ng-click="save(blog.post)"></input>	
 </form>

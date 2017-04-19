@@ -73,14 +73,16 @@ router.delete('/:id/:postid', function(req,res){
 	var collection = db.get('blogs');
 	collection.update({
 		_id: req.params.id
-	}, {$pull: {"post": {"postid": req.params.postid}}
+	}, {$pull: {'post': {postid: req.params.postid}}
 	}, function(err,blog){
 		if (err) throw err;
 		res.json(blog);
 	});
 });
 
-
+// db.blogs.update({ _id: ObjectId("58f73bf51a19a6402541eb11")}, 
+// 	{$pull: {post: { postid: 1}}}
+// 	)
 //retrieve user rating of the blog
 router.put('/:id', function(req,res){
 	var collection = db.get('blogs');
