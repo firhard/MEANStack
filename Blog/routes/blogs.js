@@ -42,7 +42,7 @@ router.post('/:id', function(req,res){
 	{
 		// rating: req.body.rating,
 		$addToSet:{
-		posts: {
+		post: {
 			$each:[{
 				postid: req.body.postid,
 				date: req.body.date,

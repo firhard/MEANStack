@@ -38,14 +38,25 @@ app.controller('HomeCtrl', ['$scope', '$resource', '$location',
 app.controller('ViewBlogCtrl', ['$scope', '$resource', '$location', '$routeParams',
     function($scope, $resource, $location, $routeParams){
         var Blogs = $resource('/api/blogs/:id');
+        var setting = function(){
+            Blogs.get({ id: $routeParams.id}, function(blog){
+                $scope.blog = blog;
+            });
+        };
+
         Blogs.get({ id: $routeParams.id}, function(blog){
             $scope.blog = blog;
         });
-
-        $scope.save = function(blog){
+       //  $scope.save = function() {
+       //     Blogs.save({ id: $routeParams.id }, $scope.new_post, function() {
+       //         $scope.new_post = {};
+       //         getBlog();
+       //     });
+       // };
+        $scope.save = function(){
             var Blogs = $resource('/api/blogs/:id');
-            Blogs.save($scope.blog, function(){
-                // $location.path('/');
+            Blogs.save({ id: $routeParams.id}, $scope.blog, function(){
+                setting();
             });
         };
 
@@ -53,6 +64,7 @@ app.controller('ViewBlogCtrl', ['$scope', '$resource', '$location', '$routeParam
             var Blogs = $resource('/api/blogs/:id/' + postId);
             Blogs.delete({ id: $routeParams.id }, function(blog){
                 // $location.path('/blog/viewblog/:id');
+                setting();
             });
         }
 }]);

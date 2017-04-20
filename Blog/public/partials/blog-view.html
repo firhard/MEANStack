@@ -1,11 +1,10 @@
-<a class="btn btn-default" href="/#/">Home Page</a><p><h1>Blog Details</h1>
+<a class="btn btn-default" href="/#/">Home Page</a><p>
+
+<h1>'{{blog.title}}' by
+		{{blog.author}}</h1>
 
 <p><p>
 
-
-		'{{blog.title}}' by
-		{{blog.author}}
-		<p>
 		Rating: {{blog.rating}}
 <ul>
 	<li ng-repeat='blog in blog.post'>
@@ -19,21 +18,23 @@
 </ul>
 
 <form>
+
 	<div class="form-group">
         <label>Post ID</label>
-        <input class="form-control" ng-model="blog.post.postid"></input>
+        <input class="form-control" ng-model="blog.postid"></input>
     </div>
     <div class="form-group">
         <label>Heading</label>
-        <input class="form-control" ng-model="blog.post.heading"></input>
+        <input class="form-control" ng-model="blog.heading"></input>
     </div>
     <div class="form-group">
         <label>Body</label>		
-        <textarea class="form-control" ng-model="blog.post.body"></textarea>
+        <textarea class="form-control" ng-model="blog.body"></textarea>
     </div>
     <div class="form-group">
         <label>Date</label>		
-        <input type="date" class="form-control" ng-model="blog.post.date">
+        <input type="date" class="form-control" ng-model="blog.date">
     </div>
-    <input type="button" class="btn btn-primary" value="Add" ng-click="save(blog.post)"></input>	
+    <button ng-click="save()" class="btn btn-success">Create</button>
+
 </form>
