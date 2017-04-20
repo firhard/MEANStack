@@ -16,7 +16,13 @@
             <input type="button" value="Delete" class="btn btn-danger" ng-click="delete(blog.postid)"></input>
     </li>
 </ul>
-
+<form>
+	<div class="form-group">
+        <label>Update Rating</label>
+        <input class="form-control" ng-model="blog.rating"></input>
+    </div>
+    <button ng-click="rating()" class="btn btn-success">Update</button>
+</form>
 <form>
 
 	<div class="form-group">

@@ -47,12 +47,7 @@ app.controller('ViewBlogCtrl', ['$scope', '$resource', '$location', '$routeParam
         Blogs.get({ id: $routeParams.id}, function(blog){
             $scope.blog = blog;
         });
-       //  $scope.save = function() {
-       //     Blogs.save({ id: $routeParams.id }, $scope.new_post, function() {
-       //         $scope.new_post = {};
-       //         getBlog();
-       //     });
-       // };
+
         $scope.save = function(){
             var Blogs = $resource('/api/blogs/:id');
             Blogs.save({ id: $routeParams.id}, $scope.blog, function(){
@@ -63,8 +58,14 @@ app.controller('ViewBlogCtrl', ['$scope', '$resource', '$location', '$routeParam
         $scope.delete = function(postId){
             var Blogs = $resource('/api/blogs/:id/' + postId);
             Blogs.delete({ id: $routeParams.id }, function(blog){
-                // $location.path('/blog/viewblog/:id');
-                setting();
+                $location.path('/');
+            });
+        }
+
+        $scope.rating = function(){
+            var Blogs = $resource('/api/blogs/:id', { id: $routeParams.id}, { 'rating': { method: 'PUT' } });
+            Blogs.rating({ rating: $routeParams.rating}, function(){
+                $location.path('/');
             });
         }
 }]);

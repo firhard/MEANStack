@@ -87,7 +87,10 @@ router.delete('/:id/:postid', function(req,res){
 router.put('/:id', function(req,res){
 	var collection = db.get('blogs');
 	collection.update({ _id: req.params.id
-	}, {rating: req.params.rating
+	}, {
+		$set: {
+			rating: req.params.rating
+		}
 	}, function(err,blog){
 		if (err) throw err;
 		res.json(blog);
