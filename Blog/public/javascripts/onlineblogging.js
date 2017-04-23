@@ -18,19 +18,24 @@ app.config(['$routeProvider', function($routeProvider){
 app.controller('HomeCtrl', ['$scope', '$resource', '$location', 
 	function($scope, $resource, $location){
 		var Blogs = $resource('/api/blogs');
+        var reset = function(){
+            Blogs.query(function(blogs){
+                $scope.blogs = blogs;
+            }); 
+        }
 		Blogs.query(function(blogs){
 			$scope.blogs = blogs;
 		});
 		$scope.save = function(){
 			var Blogs = $resource('/api/blogs');
             Blogs.save($scope.blog, function(){
-                $location.path('/');
+                reset();
             });
         };
         $scope.delete = function(blog_id){
        		var Blogs = $resource('/api/blogs/' + blog_id);
             Blogs.delete({ id: blog_id }, function(blog){
-                $location.path('/');
+                reset();
             });
         }
 }]);
@@ -58,7 +63,7 @@ app.controller('ViewBlogCtrl', ['$scope', '$resource', '$location', '$routeParam
         $scope.delete = function(postId){
             var Blogs = $resource('/api/blogs/:id/' + postId);
             Blogs.delete({ id: $routeParams.id }, function(blog){
-                $location.path('/');
+                setting();
             });
         }
 
