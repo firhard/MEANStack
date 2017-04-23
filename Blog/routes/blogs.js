@@ -80,20 +80,17 @@ router.delete('/:id/:postid', function(req,res){
 	});
 });
 
-// db.blogs.update({ _id: ObjectId("58f73bf51a19a6402541eb11")}, 
-// 	{$pull: {post: { postid: 1}}}
-// 	)
 //retrieve user rating of the blog
 router.put('/:id', function(req,res){
 	var collection = db.get('blogs');
 	collection.update({ _id: req.params.id
 	}, {
 		$set: {
-			rating: req.params.rating
+			rating: parseInt(req.body.rating)
 		}
 	}, function(err,blog){
 		if (err) throw err;
 		res.json(blog);
-	});	//needs to calculate the average
+	});	
 });
 module.exports = router;

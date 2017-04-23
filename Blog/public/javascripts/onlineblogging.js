@@ -64,8 +64,8 @@ app.controller('ViewBlogCtrl', ['$scope', '$resource', '$location', '$routeParam
 
         $scope.rating = function(){
             var Blogs = $resource('/api/blogs/:id', { id: $routeParams.id}, { 'rating': { method: 'PUT' } });
-            Blogs.rating({ rating: $routeParams.rating}, function(){
-                $location.path('/');
+            Blogs.rating({ id: $routeParams.id }, $scope.blog, function(){
+                setting();
             });
         }
 }]);
