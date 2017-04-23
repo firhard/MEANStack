@@ -44,7 +44,7 @@ router.post('/:id', function(req,res){
 		$addToSet:{
 		post: {
 			$each:[{
-				postid: req.body.postid,
+				postid: parseInt(req.body.postid),
 				date: req.body.date,
 				heading: req.body.heading,
 				body: req.body.body
@@ -73,7 +73,7 @@ router.delete('/:id/:postid', function(req,res){
 	var collection = db.get('blogs');
 	collection.update({
 		_id: req.params.id
-	}, {$pull: {'post': {postid: req.params.postid}}
+	}, {$pull: {'post': {postid: parseInt(req.params.postid)}}
 	}, function(err,blog){
 		if (err) throw err;
 		res.json(blog);
